@@ -1,0 +1,13 @@
+---
+
+- hosts: NVSlaves
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: install packages via yum
+      yum:
+        name: mutt
+        state: absent
+#        state: absent

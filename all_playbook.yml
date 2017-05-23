@@ -1,0 +1,25 @@
+---
+
+- hosts: NVSlaves
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: copy a file
+      copy:
+        src: /etc/shadow
+        dest: /tmp
+  
+    - name: execute the below command
+      command: chmod 755 /tmp/shadow
+
+    - name: install a package
+      yum:
+         name: mutt
+         state: present
+
+    - name: start a service
+      service: 
+          name: vsftpd 
+          state: stopped

@@ -1,0 +1,12 @@
+---
+
+- hosts: NVSlaves
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: copy file from master to source
+      copy:
+        src: /etc/passwd
+        dest: /tmp/
